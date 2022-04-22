@@ -1,3 +1,4 @@
+from matplotlib.pyplot import xticks
 import plotly.express as px
 import re
 
@@ -16,7 +17,12 @@ def plot(f):
     c = 0
     for i in range(len(epoch_list)):
         suffix = ".{}".format(c)
-        epoch_list[i] = re.sub("/10", suffix, epoch_list[i])
+        try:
+            epoch_list[i] = re.sub("/15", suffix, epoch_list[i])
+        except:
+            epoch_list[i] = re.sub("/10", suffix, epoch_list[i])
+        else:
+            epoch_list[i] = re.sub("/20", suffix, epoch_list[i])
         c += 1
         if c == 13:
             c = 0
@@ -31,7 +37,6 @@ def plot(f):
     fig.update_layout(
         title="Loss vs Epoch", xaxis_title="Epoch", yaxis_title="Loss"
     )
-    # draw a y = 3.5 line
     fig.add_shape(
         type="line",
         x0=0,
@@ -43,4 +48,4 @@ def plot(f):
     fig.show()
 
 
-plot(f=open(r"project-tv-script-generation\test.txt", "r"))
+plot(f=open(r"e15b128.txt", "r"))
