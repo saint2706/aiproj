@@ -19,10 +19,10 @@ def plot(f):
         suffix = ".{}".format(c)
         try:
             epoch_list[i] = re.sub("/15", suffix, epoch_list[i])
-        except:
             epoch_list[i] = re.sub("/10", suffix, epoch_list[i])
-        else:
             epoch_list[i] = re.sub("/20", suffix, epoch_list[i])
+        except:
+            print("cringe")
         c += 1
         if c == 13:
             c = 0
@@ -48,4 +48,6 @@ def plot(f):
     fig.show()
 
 
+plot(f=open(r"e20b128.txt", "r"))
 plot(f=open(r"e15b128.txt", "r"))
+plot(f=open(r"e10b128.txt", "r"))
